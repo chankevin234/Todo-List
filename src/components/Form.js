@@ -1,15 +1,30 @@
 import React from "react";
 
 //dropdown menu
-const From = () => {
+const Form = ({ setInputText, todos, setTodos, inputText }) => {
+  //here I will write JS code/function
+  //inputTextHandler for each to do
+  const inputTextHandler = (e) => {
+    //console.log(e.target.value);
+    setInputText(e.target.value);
+  };
+  // for each click of submit
+  const submitTodoHandler = (e) => {
+    e.preventDefault();
+    setTodos([
+      ...todos,
+      { text: inputText, completed: false, id: Math.random() * 1000 },
+    ]);
+  };
+
   return (
     <form>
-      <input type="text" class="todo-input" />
-      <button class="todo-button" type="submit">
-        <i class="fas fa-plus-square"></i>
+      <input onChange={inputTextHandler} type="text" className="todo-input" />
+      <button onClick={submitTodoHandler} className="todo-button" type="submit">
+        <i className="fas fa-plus-square"></i>
       </button>
-      <div class="select">
-        <select name="todos" class="filter-todo">
+      <div className="select">
+        <select name="todos" className="filter-todo">
           <option value="all">All</option>
           <option value="completed">Completed</option>
           <option value="uncompleted">Uncompleted</option>
@@ -18,3 +33,5 @@ const From = () => {
     </form>
   );
 };
+
+export default Form;
