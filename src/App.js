@@ -6,10 +6,11 @@ import TodoList from "./components/TodoList";
 
 function App() {
   //react hook to call function setInputText from Form.js and place it in <Form />
+  //these are states
   const [inputText, setInputText] = useState("");
   //react hook to call function setTodos and place it in <Form />
   const [todos, setTodos] = useState([]);
-
+  // props can only be PASSED DOWN from app.js to TodoList.js (Top to Components)
   return (
     <div className="App">
       <header>
@@ -21,7 +22,8 @@ function App() {
         setTodos={setTodos}
         setInputText={setInputText}
       />
-      <TodoList />
+
+      <TodoList setTodos={setTodos} todos={todos} />
     </div>
   );
 }
